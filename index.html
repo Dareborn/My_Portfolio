@@ -410,11 +410,12 @@ section{padding:6rem 4rem;}
 .ch-logo.pi{background:#E60023;}
 .ch-logo.wa{background:#25D366;}
 .ch-logo.em{background:var(--blue-500);}
-.ch-info{}
-.ch-handle{font-family:var(--font-ui);font-weight:800;font-size:0.9rem;color:var(--black);}
+.ch-info{min-width:0;flex:1;}
+.ch-handle{font-family:var(--font-ui);font-weight:800;font-size:0.84rem;color:var(--black);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
 .ch-plat{font-size:0.71rem;font-family:var(--font-ui);font-weight:700;
   letter-spacing:0.07em;text-transform:uppercase;color:var(--blue-500);margin:3px 0;}
-.ch-brand{font-size:0.76rem;color:var(--muted);}
+.ch-brand{font-size:0.76rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
 /* ── CONTACT ── */
 .contact{background:var(--black);position:relative;overflow:hidden;}
@@ -473,6 +474,98 @@ footer{
 .footer-links{display:flex;gap:1.5rem;}
 .footer-links a{font-size:0.78rem;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s;}
 .footer-links a:hover{color:var(--blue-400);}
+
+/* ── RATE CARD SELECT ── */
+.rate-card{cursor:pointer;}
+.rate-card.selected{border-color:#22C55E!important;background:rgba(34,197,94,0.07)!important;
+  box-shadow:0 0 0 2px rgba(34,197,94,0.3);}
+.rate-select-btn{
+  margin-top:1.5rem;width:100%;padding:0.7rem 1rem;
+  background:rgba(37,99,235,0.15);border:1.5px solid rgba(37,99,235,0.35);
+  border-radius:var(--r-sm);color:rgba(255,255,255,0.75);
+  font-family:var(--font-ui);font-size:0.8rem;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;
+  transition:all 0.2s;
+}
+.rate-select-btn:hover,.rate-card.selected .rate-select-btn{
+  background:var(--blue-500);border-color:var(--blue-500);color:white;
+}
+.rate-card.selected .rate-select-btn{
+  background:#22C55E;border-color:#22C55E;color:white;
+}
+.rate-card.selected .rate-select-btn::before{content:'✓  ';}
+.rates-enquire-wrap{text-align:center;margin-top:2rem;}
+.rates-enquire-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:0.9rem 2.4rem;background:var(--blue-500);color:white;
+  border:none;border-radius:var(--r-sm);font-family:var(--font-ui);font-size:0.88rem;
+  font-weight:700;letter-spacing:0.05em;cursor:pointer;transition:all 0.22s;
+  opacity:0.35;pointer-events:none;
+}
+.rates-enquire-btn.active{opacity:1;pointer-events:auto;}
+.rates-enquire-btn.active:hover{background:var(--blue-600);transform:translateY(-2px);}
+
+/* ── ENQUIRY MODAL ── */
+.eq-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:2000;
+  display:none;align-items:center;justify-content:center;
+  padding:1rem;backdrop-filter:blur(6px);
+}
+.eq-overlay.open{display:flex;}
+.eq-modal{
+  background:#0e1628;border:1px solid rgba(37,99,235,0.3);
+  border-radius:var(--r-xl);padding:2.5rem;max-width:520px;width:100%;
+  position:relative;animation:fadeUp 0.3s both;
+}
+.eq-close{
+  position:absolute;top:1.2rem;right:1.2rem;background:rgba(255,255,255,0.07);
+  border:none;color:rgba(255,255,255,0.5);width:34px;height:34px;border-radius:50%;
+  font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;
+}
+.eq-close:hover{background:rgba(255,255,255,0.15);color:white;}
+.eq-eyebrow{font-family:var(--font-ui);font-size:0.7rem;font-weight:800;
+  letter-spacing:0.15em;text-transform:uppercase;color:var(--blue-400);margin-bottom:0.6rem;}
+.eq-title{font-family:var(--font-display);font-size:1.6rem;font-weight:900;
+  color:white;margin-bottom:0.3rem;letter-spacing:-0.01em;}
+.eq-plan-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.35);
+  border-radius:100px;padding:0.35rem 1rem;
+  font-family:var(--font-ui);font-size:0.78rem;font-weight:700;
+  color:var(--blue-400);margin-bottom:1.5rem;letter-spacing:0.04em;
+}
+.eq-divider{height:1px;background:rgba(255,255,255,0.07);margin-bottom:1.5rem;}
+.eq-label{font-family:var(--font-ui);font-size:0.7rem;font-weight:800;
+  letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);
+  margin-bottom:0.6rem;}
+.eq-name-input{
+  width:100%;padding:0.75rem 1rem;background:rgba(255,255,255,0.05);
+  border:1.5px solid rgba(255,255,255,0.1);border-radius:var(--r-sm);
+  color:white;font-family:var(--font-body);font-size:0.9rem;
+  margin-bottom:1.2rem;outline:none;transition:border-color 0.2s;
+}
+.eq-name-input:focus{border-color:var(--blue-500);}
+.eq-name-input::placeholder{color:rgba(255,255,255,0.25);}
+.eq-channels{display:flex;flex-direction:column;gap:0.7rem;margin-bottom:1.5rem;}
+.eq-ch-btn{
+  display:flex;align-items:center;gap:1rem;padding:1rem 1.3rem;
+  border-radius:var(--r-md);border:1.5px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.03);text-decoration:none;
+  color:white;font-family:var(--font-ui);font-weight:600;font-size:0.88rem;
+  transition:all 0.22s;cursor:pointer;
+}
+.eq-ch-btn:hover{border-color:var(--blue-500);background:rgba(37,99,235,0.1);}
+.eq-ch-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.eq-ch-icon svg{width:20px;height:20px;}
+.eq-ch-icon.wa{background:#25D366;}
+.eq-ch-icon.em{background:var(--blue-500);}
+.eq-ch-icon.ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
+.eq-ch-meta{text-align:left;}
+.eq-ch-lbl{font-size:0.68rem;font-family:var(--font-ui);font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:2px;}
+.eq-ch-val{font-size:0.88rem;font-weight:700;color:white;}
+.eq-note{font-size:0.75rem;color:rgba(255,255,255,0.25);text-align:center;line-height:1.6;}
 
 /* ── REVEAL ANIMATION ── */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.55s ease,transform 0.55s ease;}
@@ -576,7 +669,7 @@ footer{
       <span class="blue">OBAFEMI</span>
     </h1>
     <p class="hero-tagline">
-      <strong>Media Strategist · Creative Director · Website Designer · AI Automation Specialist</strong><br>
+      <strong>Media Strategist · Creative Director · Website Designer · UI/UX Designer · AI Automation Specialist</strong><br>
       Building brands that scroll, sell, and scale - from Ibadan to everywhere.
     </p>
     <div class="hero-actions">
@@ -1036,7 +1129,8 @@ footer{
 
   <div class="rates-grid">
 
-    <div class="rate-card reveal">
+    <!-- STARTER -->
+    <div class="rate-card reveal" onclick="selectPlan(this,'Starter – ₦150k/month')">
       <div class="rate-tier">Starter</div>
       <div class="rate-price"><span class="rate-cur">₦</span>150<span class="rate-k">k</span></div>
       <div class="rate-period">per month</div>
@@ -1048,9 +1142,11 @@ footer{
         <li>Content calendar</li>
         <li>Monthly analytics report</li>
       </ul>
+      <button class="rate-select-btn">Select Plan</button>
     </div>
 
-    <div class="rate-card hot reveal">
+    <!-- GROWTH -->
+    <div class="rate-card hot reveal" onclick="selectPlan(this,'Growth – ₦280k/month')">
       <div class="rate-badge">Most Popular</div>
       <div class="rate-tier">Growth</div>
       <div class="rate-price"><span class="rate-cur">₦</span>280<span class="rate-k">k</span></div>
@@ -1065,9 +1161,11 @@ footer{
         <li>Bi-weekly check-in calls</li>
         <li>Monthly analytics report</li>
       </ul>
+      <button class="rate-select-btn">Select Plan</button>
     </div>
 
-    <div class="rate-card reveal">
+    <!-- FULL BRAND -->
+    <div class="rate-card reveal" onclick="selectPlan(this,'Full Brand – ₦500k/month')">
       <div class="rate-tier">Full Brand</div>
       <div class="rate-price"><span class="rate-cur">₦</span>500<span class="rate-k">k</span></div>
       <div class="rate-period">per month</div>
@@ -1082,9 +1180,11 @@ footer{
         <li>Weekly calls &amp; reports</li>
         <li>Paid ad strategy</li>
       </ul>
+      <button class="rate-select-btn">Select Plan</button>
     </div>
 
-    <div class="rate-card reveal">
+    <!-- À LA CARTE -->
+    <div class="rate-card reveal" onclick="selectPlan(this,'À La Carte – ₦50k+/deliverable')">
       <div class="rate-tier">À La Carte</div>
       <div class="rate-price"><span class="rate-cur">₦</span>50<span class="rate-k">k+</span></div>
       <div class="rate-period">per deliverable</div>
@@ -1098,16 +1198,79 @@ footer{
         <li>Reel scripting &amp; direction</li>
         <li>Consultation call (60 min)</li>
       </ul>
+      <button class="rate-select-btn">Select Plan</button>
     </div>
 
   </div>
 
-  <p class="rates-note">
+  <div class="rates-enquire-wrap">
+    <button class="rates-enquire-btn" id="enquireBtn" onclick="openModal()">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      Enquire About Selected Plan
+    </button>
+  </div>
+
+  <p class="rates-note" style="margin-top:1.2rem;">
     Packages are negotiable · International clients invoiced in USD / GBP<br>
     Email <a href="mailto:thedavidmedia@gmail.com">thedavidmedia@gmail.com</a> or WhatsApp
     <a href="https://wa.me/2347039170328">07039170328</a> to discuss your project
   </p>
 </section>
+
+
+<!-- ══════════════════════════════════════
+     ENQUIRY MODAL
+══════════════════════════════════════ -->
+<div class="eq-overlay" id="eqOverlay" onclick="closeModalOutside(event)">
+  <div class="eq-modal">
+    <button class="eq-close" onclick="closeModal()">✕</button>
+    <div class="eq-eyebrow">Enquiry</div>
+    <div class="eq-title">Let's Get Started</div>
+    <div class="eq-plan-badge" id="eqPlanBadge">Selected Plan</div>
+    <div class="eq-divider"></div>
+
+    <div class="eq-label">Your name (optional)</div>
+    <input class="eq-name-input" id="eqName" type="text" placeholder="e.g. Amina Bello" />
+
+    <div class="eq-label">How would you like to reach out?</div>
+    <div class="eq-channels">
+      <a class="eq-ch-btn" id="eqWhatsApp" href="#" target="_blank" rel="noopener">
+        <div class="eq-ch-icon wa">
+          <svg viewBox="0 0 24 24"><use href="#icon-whatsapp"/></svg>
+        </div>
+        <div class="eq-ch-meta">
+          <div class="eq-ch-lbl">Fastest Response</div>
+          <div class="eq-ch-val">WhatsApp — 07039170328</div>
+        </div>
+        <span style="margin-left:auto;font-size:1.2rem;opacity:0.4;">↗</span>
+      </a>
+
+      <a class="eq-ch-btn" id="eqEmail" href="#" target="_blank" rel="noopener">
+        <div class="eq-ch-icon em">
+          <svg viewBox="0 0 24 24"><use href="#icon-email"/></svg>
+        </div>
+        <div class="eq-ch-meta">
+          <div class="eq-ch-lbl">Email</div>
+          <div class="eq-ch-val">thedavidmedia@gmail.com</div>
+        </div>
+        <span style="margin-left:auto;font-size:1.2rem;opacity:0.4;">↗</span>
+      </a>
+
+      <a class="eq-ch-btn" id="eqInstagram" href="https://instagram.com/thedavidmedia" target="_blank" rel="noopener">
+        <div class="eq-ch-icon ig">
+          <svg viewBox="0 0 24 24"><use href="#icon-ig"/></svg>
+        </div>
+        <div class="eq-ch-meta">
+          <div class="eq-ch-lbl">Instagram DM</div>
+          <div class="eq-ch-val">@thedavidmedia</div>
+        </div>
+        <span style="margin-left:auto;font-size:1.2rem;opacity:0.4;">↗</span>
+      </a>
+    </div>
+
+    <p class="eq-note">Your selected plan and name will be pre-filled in the message so David knows exactly what you're interested in — no back and forth needed.</p>
+  </div>
+</div>
 
 
 <!-- ══════════════════════════════════════
@@ -1304,6 +1467,62 @@ footer{
 </footer>
 
 <script>
+// Plan selection
+let selectedPlan = '';
+function selectPlan(cardEl, planName) {
+  // deselect all
+  document.querySelectorAll('.rate-card').forEach(c => {
+    c.classList.remove('selected');
+    const btn = c.querySelector('.rate-select-btn');
+    if (btn) btn.textContent = 'Select Plan';
+  });
+  // select clicked
+  const card = cardEl.closest ? cardEl : cardEl;
+  card.classList.add('selected');
+  const btn = card.querySelector('.rate-select-btn');
+  if (btn) btn.textContent = 'Selected ✓';
+  selectedPlan = planName;
+  const enquireBtn = document.getElementById('enquireBtn');
+  if (enquireBtn) enquireBtn.classList.add('active');
+}
+
+function buildMessage() {
+  const name = document.getElementById('eqName').value.trim();
+  const greeting = name ? `Hi David, my name is ${name}.` : 'Hi David,';
+  return `${greeting} I visited your portfolio and I'm interested in the ${selectedPlan} package. I'd love to discuss further — can we connect?`;
+}
+
+function openModal() {
+  if (!selectedPlan) return;
+  document.getElementById('eqPlanBadge').textContent = '📦 ' + selectedPlan;
+  updateModalLinks();
+  document.getElementById('eqOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('eqOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('eqOverlay')) closeModal();
+}
+
+function updateModalLinks() {
+  const msg = buildMessage();
+  const waMsg = encodeURIComponent(msg);
+  const emailSubject = encodeURIComponent(`Enquiry: ${selectedPlan} — David Obafemi Portfolio`);
+  const emailBody = encodeURIComponent(msg);
+
+  document.getElementById('eqWhatsApp').href = `https://wa.me/2347039170328?text=${waMsg}`;
+  document.getElementById('eqEmail').href = `mailto:thedavidmedia@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+}
+
+// Update links live as name is typed
+document.addEventListener('DOMContentLoaded', () => {
+  const nameInput = document.getElementById('eqName');
+  if (nameInput) nameInput.addEventListener('input', () => { if (selectedPlan) updateModalLinks(); });
+});
+
 // Scroll reveal
 const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver(entries => {
